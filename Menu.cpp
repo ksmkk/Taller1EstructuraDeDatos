@@ -25,6 +25,18 @@ void Menu::LeerUsuariosyMateriales() {
         contadorUsuarios++;
     }
 
+    std::ifstream archivo("materiales.txt");
+    string linea;
+
+    int contadorMateriales = 0;
+    while (std::getline(archivo,linea)) {
+       if (contadorMateriales != 0)
+        {
+            LeerUsuario(linea);
+        }
+        contadorMateriales++;
+    }
+
 
     if (!archivo) {
         std::cout << "No se pudo leer el archivo" << std::endl;
