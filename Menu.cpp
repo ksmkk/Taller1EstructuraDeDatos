@@ -34,7 +34,7 @@ std::vector<std::string> split(const std::string &str, char delimiter)
 
 bool Menu::LeerMateriales(std::string linea)
 {
-    std::vector<std::string> partes = split(linea, ';');
+    std::vector<std::string> partes = split(linea, '/');
 
     if (partes.size() >= 5)
     {
@@ -87,7 +87,7 @@ bool Menu::LeerMateriales(std::string linea)
 
 bool Menu::LeerUsuario(std::string linea)
 {
-    std::vector<std::string> partes = split(linea, ';');
+    std::vector<std::string> partes = split(linea, '/');
 
     if (partes.size() >= 2)
     {
@@ -245,7 +245,7 @@ void Menu::AgregarMaterial()
         std::cout << "Ingrese la categoria del material (Libro/Revista): ";
         std::cin >> categoria;
 
-        std::ofstream archivo("materiales.txt");
+        std::ofstream archivo("materiales.txt" , std::ios::app);
 
         if (!archivo) {
             std::cout << "Error al abrir el archivo." << std::endl;
@@ -274,7 +274,7 @@ void Menu::AgregarMaterial()
             biblioteca[contadorMateriales] = new Libro(nombreMaterial, autor, isbn, fecha, resumen);
             std::cout << "Libro creado: " << biblioteca[contadorMateriales]->getNombre() << std::endl;
             contadorMateriales++;
-            archivo << nombreMaterial<<"/"<<autor<<"/"<<isbn<<"/"<<fecha<<"/"<<resumen<< endl;
+            archivo << categoria<<"/"<<nombreMaterial<<"/"<<autor<<"/"<<isbn<<"/"<<fecha<<"/"<<resumen<< endl;
             break;
         }
         else if (categoria == "Revista")
@@ -302,7 +302,7 @@ void Menu::AgregarMaterial()
             std::cout << "Revista creada: " << biblioteca[contadorMateriales]->getNombre() << std::endl;
             contadorMateriales++;
 
-            archivo << nombreMaterial<<"/"<<autor<<"/"<<isbn<<"/"<<numEdicion<<"/"<<mes<< endl;
+            archivo << categoria<<"/"<<nombreMaterial<<"/"<<autor<<"/"<<isbn<<"/"<<numEdicion<<"/"<<mes<< endl;
             break;
         } else {
             std::cout << "Categoria incorrecta, solo se aceptan libros y revistas." << std::endl;
@@ -366,9 +366,9 @@ void Menu::CrearUsuario()
     std::cin >> nombre;
     std::cout << "Ingrese id: " << std::endl;
     std::cin >> id;
-    Usuario *creado = new Usuario(nombre, id);
+    Usuario* creado = new Usuario(nombre, id);
     
-    std::ofstream archivo("usuarios.txt");
+    std::ofstream archivo("usuarios.txt" , std::ios::app);
 
     if (!archivo) {
         std::cout << "Error al abrir el archivo." << std::endl;
