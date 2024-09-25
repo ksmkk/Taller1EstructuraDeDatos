@@ -328,6 +328,14 @@ void Menu::DevolverMaterial()
 }
 
 void Menu::CrearUsuario() {
+    std::cout << "Creando Usuario... " << std::endl;
+    std::string nombre;
+    int id;
+    std::cout<<"Ingrese nombre: "<<std::endl;
+    std::cin>> nombre;
+    std::cout<<"Ingrese id: "<<std::endl;
+    std::cin>>id;
+    Usuario *creado = new Usuario(nombre,id);
     
 }
 
