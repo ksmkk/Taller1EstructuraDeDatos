@@ -200,6 +200,7 @@ void Menu::MostrarMenu()
             if (opcionUsuario == 1)
             {
                 CrearUsuario();
+                
             }
             else if (opcionUsuario == 2)
             {
@@ -209,6 +210,8 @@ void Menu::MostrarMenu()
             {
                 BorrarUsuario();
             }
+
+            break;
 
         case 6:
             std::cout << "Saliendo del sistema..." << std::endl;
