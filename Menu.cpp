@@ -189,6 +189,8 @@ void Menu::MostrarMenu()
 
             break;
         case 5:
+
+
             int opcionUsuario;
             std::cout << "1. Crear Usuario" << std::endl;
             std::cout << "2. Buscar Usuario" << std::endl;
@@ -197,18 +199,19 @@ void Menu::MostrarMenu()
             std::cout << "Ingrese su opcion a elegir: " << std::endl;
             std::cin >> opcionUsuario;
 
+
             if (opcionUsuario == 1)
             {
-                CrearUsuario();
+                void CrearUsuario();
                 
             }
             else if (opcionUsuario == 2)
             {
-                BuscarUsuario();
+                void BuscarUsuario();
             }
             else
             {
-                BorrarUsuario();
+                void BorrarUsuario();
             }
 
             break;
