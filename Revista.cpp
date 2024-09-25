@@ -3,7 +3,7 @@
 #include<iostream>
 using namespace std;
 Revista::Revista(std::string nombre, std::string autor, int isbn, int Nedicion, std::string mesPublicacion)
-    :MaterialBibliografico(nombre, autor, isbn )
+    :MaterialBibliografico(tipo, nombre, autor, isbn )
 {
     this -> Nedicion = Nedicion;
     this -> mesPublicacion = mesPublicacion;

@@ -8,6 +8,16 @@
 #include <sstream>
 #include <vector>
 
+Menu::Menu() {
+    contadorMateriales = 0;
+
+    for (int i = 0; i < 100; i++)
+    {
+        biblioteca[i] = nullptr;
+    }
+    
+}
+
 std::vector<std::string> split(const std::string& str, char delimiter) {
     std::vector<std::string> partes;
     std::string parte;
@@ -25,13 +35,47 @@ bool Menu::LeerMateriales(std::string linea) {
 
     if (partes.size() >= 5)
     {
+        std::string tipo = partes[0];
         std::string nombre = partes[1];
         std::string autor = partes[2];
         int isbn = std::stoi(partes[3]);
 
+        MaterialBibliografico* material = nullptr;
+
+        if (tipo == "Libro" && partes.size() >= 6)
+        {
+            std::string fechaPublicacion = partes[4];
+            std::string resumen = partes[5];
+
+            material = new Libro(nombre, autor, isbn, fechaPublicacion, resumen);
+
+        } else if (tipo == "Revista" && partes.size() >= 6)
+        {
+            int Nedicion = std::stoi(partes[4]);
+            std::string mesPublicacion = partes[5];
+
+            material = new Revista(nombre, autor, isbn, Nedicion, mesPublicacion);
+
+        } else {
+            std::cout << "Tipo no identificado: " << tipo << std::endl;
+            return false;
+        }
+        if (material != nullptr) {
+            if (contadorMateriales < 100) {  
+                biblioteca[contadorMateriales] = material;  
+                contadorMateriales++; 
+                
+                return true;
+            } else {
+                std::cout << "La biblioteca está llena. No se puede agregar más materiales." << std::endl;
+                
+                delete material;  
+            }
+        }
     }
-    
-}
+
+    return false;
+    }
 
 bool Menu::LeerUsuario(std::string linea) {
     std::vector<std::string> partes = split(linea , ';');
@@ -39,7 +83,7 @@ bool Menu::LeerUsuario(std::string linea) {
     if (partes.size() >= 2) 
     {
         std::string nombre = partes[0];
-        int id = std::stoi(partes[1]); // stoi funciona para convertir de string a int 
+        int id = std::stoi(partes[1]); 
 
         Usuario nuevoUsuario(nombre , id);
         std::cout << "Usuario leído: " << nuevoUsuario.getNombre() << ", ID: " << nuevoUsuario.getId() << std::endl;
@@ -82,11 +126,14 @@ void Menu::LeerUsuariosyMateriales() {
     }
 }
 
-Menu::Menu() : contadorMateriales(0) {
-}
-
 void Menu::MostrarMenu() {
+    
     int opcion;
+    bool Verdad = true;
+
+    while (Verdad)
+    {
+    
     std::cout <<"1. Agregar material" << std::endl;
     std::cout <<"2. Mostrar Informacion de Material" << std::endl;
     std::cout <<"3. Buscar Material" << std::endl;
@@ -105,10 +152,27 @@ void Menu::MostrarMenu() {
             MostrarInfoMaterial();
             break;
         case 3:
-            std::cout << "Función de búsqueda en construcción." << std::endl;
+            BuscarMaterial();
             break;
         case 4:
-            std::cout << "Función de préstamo/devolución en construcción." << std::endl;
+            int opcionMaterial;
+            std::cout << "1.Prestar material" << std::endl;
+            std::cout << "2.Devolver material" << std::endl;
+            std::cout << "Ingrese su opcion a elegir: " << std::endl;
+            std::cin >> opcionMaterial;
+            if (opcion == 1)
+            {
+                void PrestarMaterial();
+            }
+            else if (opcion == 2)
+            {
+                void DevolverMaterial();
+            }
+            else
+            {
+                std::cout << "Opcion invalida" << std::endl;
+            }
+
             break;
         case 5:
             int opcionUsuario;
@@ -121,21 +185,23 @@ void Menu::MostrarMenu() {
             
             if (opcionUsuario == 1)
             {
-                void CrearUsuario();
+                CrearUsuario();
             } else if (opcionUsuario == 2) {
-                void BuscarUsuario();
+                 BuscarUsuario();
             } else {
-                void BorrarUsuario();
+                BorrarUsuario();
             }
 
             
         case 6:
             std::cout << "Saliendo del sistema..." << std::endl;
+            Verdad = false;
             break;
         default:
             std::cout << "Opción no válida." << std::endl;
             break;
     }
+}
 }
 
 void Menu::AgregarMaterial() {
@@ -158,7 +224,7 @@ void Menu::AgregarMaterial() {
 
     while (EsVerdadero) {
     
-    std::cout << "Ingrese la categoría del material (Libro/Revista): ";
+    std::cout << "Ingrese la categoria del material (Libro/Revista): ";
     std::cin >> categoria;
 
     if (categoria == "Libro") {
@@ -181,7 +247,7 @@ void Menu::AgregarMaterial() {
         std::getline(std::cin, resumen);
         
         biblioteca[contadorMateriales] = new Libro(nombreMaterial, autor, isbn, fecha, resumen);
-        std::cout << "Libro creado: " <<  biblioteca[contadorMateriales]->getAutor() << std::endl;
+        std::cout << "Libro creado: " <<  biblioteca[contadorMateriales]->getNombre() << std::endl;
         contadorMateriales++;
         break;
     } 
@@ -206,7 +272,7 @@ void Menu::AgregarMaterial() {
         std::getline(std::cin, mes);
         
         biblioteca[contadorMateriales] = new Revista(nombreMaterial, autor, isbn, numEdicion, mes);
-        std::cout << "Revista creada: " <<  biblioteca[contadorMateriales]->getAutor() << std::endl;
+        std::cout << "Revista creada: " <<  biblioteca[contadorMateriales]->getNombre() << std::endl;
         contadorMateriales++;
         break;
     } 
@@ -223,4 +289,52 @@ void Menu::MostrarInfoMaterial() {
     for (int i = 0; i < contadorMateriales; i++) {
         biblioteca[i]->mostrarInformacion();
     }
+}
+
+void Menu::BuscarMaterial()
+{
+    std::string nombre;
+    std::cout << "Ingrese el nombre del material buscado: " << std::endl;
+    std::cin >> nombre;
+    for (int i = 0; i < contadorMateriales; i++)
+    {
+        if (biblioteca[i]->getNombre() == nombre)
+        {
+            std::cout << "Se ha encontrado el material" << std::endl;
+        }
+    }
+}
+
+void Menu::PrestarMaterial()
+{
+    std::string nombre;
+    std::cout << "Ingrese el nombre del material a prestar: " << std::endl;
+    std::cin >> nombre;
+    MaterialBibliografico *buscado;
+    for (int i = 0; i < contadorMateriales; i++)
+    {
+        if (biblioteca[i]->getNombre() == nombre){
+            buscado = biblioteca[i];
+        }
+    }
+    buscado->prestar();
+}
+
+void Menu::DevolverMaterial()
+{
+    std::string nombre;
+    std::cout << "Ingrese el nombre del material a devolver: " << std::endl;
+    std::cin >> nombre;
+}
+
+void Menu::CrearUsuario() {
+    
+}
+
+void Menu::BuscarUsuario() {
+    
+}
+
+void Menu::BorrarUsuario() {
+    
 }

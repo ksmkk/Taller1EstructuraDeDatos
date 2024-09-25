@@ -19,6 +19,13 @@ public:
     void LeerUsuariosyMateriales();
     bool LeerUsuario(std::string linea);
     bool LeerMateriales(std::string linea);
+    void BuscarMaterial();
+    void PrestarMaterial();
+    void DevolverMaterial();
+    void CrearUsuario();
+    void BuscarUsuario();
+    void BorrarUsuario();
+
 
 };
 

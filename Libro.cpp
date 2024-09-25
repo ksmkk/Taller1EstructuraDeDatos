@@ -2,7 +2,7 @@
 #include<iostream>
 
 Libro::Libro(std::string nombre, std:: string autor, int isbn, std::string fechaPublicacion, std::string resumen)
-    :MaterialBibliografico(nombre, autor, isbn ){
+    :MaterialBibliografico(tipo, nombre, autor, isbn ){
     this -> fechaPublicacion = fechaPublicacion;
     this -> resumen = resumen;
 }
