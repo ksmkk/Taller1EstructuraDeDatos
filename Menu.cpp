@@ -5,19 +5,58 @@
 #include "Libro.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <vector>
+
+std::vector<std::string> split(const std::string& str, char delimiter) {
+    std::vector<std::string> partes;
+    std::string parte;
+    std::stringstream ss(str);
+
+    while (std::getline(ss, parte, delimiter)) {
+        partes.push_back(parte);
+    }
+
+    return partes;
+}
+
+bool Menu::LeerMateriales(std::string linea) {
+     std::vector<std::string> partes = split(linea , ';');
+
+    if (partes.size() >= 5)
+    {
+        std::string nombre = partes[1];
+        std::string autor = partes[2];
+        int isbn = std::stoi(partes[3]);
+
+    }
+    
+}
 
 bool Menu::LeerUsuario(std::string linea) {
+    std::vector<std::string> partes = split(linea , ';');
+
+    if (partes.size() >= 2) 
+    {
+        std::string nombre = partes[0];
+        int id = std::stoi(partes[1]); // stoi funciona para convertir de string a int 
+
+        Usuario nuevoUsuario(nombre , id);
+        std::cout << "Usuario leído: " << nuevoUsuario.getNombre() << ", ID: " << nuevoUsuario.getId() << std::endl;
+
+        return true;
+    }
     
     return false;
 }
 
 void Menu::LeerUsuariosyMateriales() {
     
-    std::ifstream archivo("usuarios.txt");
-    string linea;
+    std::ifstream archivoU("usuarios.txt");
+    std::string linea;
 
     int contadorUsuarios = 0;
-    while (std::getline(archivo,linea)) {
+    while (std::getline(archivoU,linea)) {
         if (contadorUsuarios != 0)
         {
             LeerUsuario(linea);
@@ -25,20 +64,20 @@ void Menu::LeerUsuariosyMateriales() {
         contadorUsuarios++;
     }
 
-    std::ifstream archivo("materiales.txt");
-    string linea;
+    std::ifstream archivoM("materiales.txt");
+    std::string lineaM;
 
     int contadorMateriales = 0;
-    while (std::getline(archivo,linea)) {
+    while (std::getline(archivoM,linea)) {
        if (contadorMateriales != 0)
         {
-            LeerUsuario(linea);
+            LeerMateriales(lineaM);
         }
         contadorMateriales++;
     }
 
 
-    if (!archivo) {
+    if (!archivoU || !archivoM) {
         std::cout << "No se pudo leer el archivo" << std::endl;
     }
 }

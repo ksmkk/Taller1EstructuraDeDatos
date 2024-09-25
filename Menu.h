@@ -18,6 +18,8 @@ public:
     void MostrarInfoMaterial();
     void LeerUsuariosyMateriales();
     bool LeerUsuario(std::string linea);
+    bool LeerMateriales(std::string linea);
+
 };
 
 #endif
