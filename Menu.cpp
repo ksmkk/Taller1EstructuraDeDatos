@@ -408,4 +408,19 @@ void Menu::BorrarUsuario(int id)
             break;
         }
     }
+
+    if (indice == -1) {
+        std::cout << "Usuario con ID " << id << " no encontrado.\n";
+        return;
+    }
+
+    
+    for (int i = indice; i < contadorUsuarios - 1; i++) {
+        ListaUsuarios[i] = ListaUsuarios[i + 1]; 
+    }
+
+    contadorUsuarios--;
+
+    std::cout << "Usuario con ID " << id << " ha sido borrado.\n";
+}
 }
