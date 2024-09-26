@@ -1,2 +1,3 @@
 Libro/C++ Programming/Bjarne Stroustrup/9780321563842/2023/Introducción a la programación en C++.
-Revista/Science Magazine/John Doe/1234567890123/Vol 5/Septiembre
+Revista/Science Magazine/John Doe/1234567890123/Vol 5/SeptiembreLibro/Perry/phineas/48343/17-02-2023/ta weno
+Libro/si/si/4343/si/si

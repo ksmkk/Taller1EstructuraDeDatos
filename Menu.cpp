@@ -283,7 +283,7 @@ void Menu::AgregarMaterial()
             std::cin >> isbn;
             std::cin.ignore();
 
-            std::cout << "Ingrese la fecha de publicación del Libro: ";
+            std::cout << "Ingrese la fecha de publicacion del Libro: ";
             std::getline(std::cin, fecha);
 
             std::cout << "Ingrese un resumen del Libro: ";
