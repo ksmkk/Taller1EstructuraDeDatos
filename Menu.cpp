@@ -280,7 +280,7 @@ void Menu::AgregarMaterial()
             std::cin >> isbn;
             std::cin.ignore();
 
-            std::cout << "Ingrese la fecha de publicacion del Libro: ";
+            std::cout << "Ingrese la fecha de publicación del Libro: ";
             std::getline(std::cin, fecha);
 
             std::cout << "Ingrese un resumen del Libro: ";
@@ -419,17 +419,4 @@ void Menu::BorrarUsuario(int id)
             break;
         }
     }
-
-    if (indice == -1) {
-        std::cout << "Usuario con ID " << id << " no encontrado.\n";
-        return;
-    }
-
-    for (int i = indice; i < contadorUsuarios - 1; i++) {
-        ListaUsuarios[i] = ListaUsuarios[i + 1]; 
-    }
-
-    contadorUsuarios--;
-
-    std::cout << "Usuario con ID " << id << " ha sido borrado.\n";
 }
