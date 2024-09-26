@@ -1,3 +1,8 @@
+# Integrantes
+Bastián Salinas, 21.848.994-K, bastian.salinas01@alumnos.ucn.cl, Paralelo C1.
+
+Tomás Guerra, , 21.664.344-5 tomas.guerra@alumnos.ucn.cl, Paralelo C1.
+
 # Simulador de Biblioteca Digital
 Este proyecto es un simulador de biblioteca digital que permite realizar las siguientes acciones:
 
