@@ -163,7 +163,6 @@ void Menu::MostrarMenu()
         std::cout << "" << std::endl;
         std::cout << "Ingrese su opcion a elegir: " << std::endl;
         std::cin >> opcion;
-        std::cin.ignore();
 
         switch (opcion)
         {
@@ -199,11 +198,9 @@ void Menu::OpcionesMateriales(){
             std::cout << "2.Devolver material" << std::endl;
             std::cout << "Ingrese su opcion a elegir: " << std::endl;
             std::cin >> opcionMaterial;
-            std::cin.ignore();
-            
             if (opcionMaterial == 1)
             {
-                PrestarMaterial();
+                void PrestarMaterial();
             }
             else if (opcionMaterial == 2)
             {
@@ -215,14 +212,14 @@ void Menu::OpcionesMateriales(){
             }
 }
 void Menu::OpcionesUsuarios(){
-    int opcionUsuario;
+            int opcionUsuario;
             std::cout << "1. Crear Usuario" << std::endl;
             std::cout << "2. Buscar Usuario" << std::endl;
             std::cout << "3. Borrar Usuario" << std::endl;
             std::cout << "" << std::endl;
             std::cout << "Ingrese su opcion a elegir: " << std::endl;
             std::cin >> opcionUsuario;
-            std::cin.ignore();
+
 
             if (opcionUsuario == 1)
             {
@@ -401,6 +398,15 @@ void Menu::CrearUsuario()
 
 void Menu::BuscarUsuario()
 {
+    std::string name;
+    std::cout<<"Ingrese nombre del Usuario: "<<std::endl;
+    std::cin>>name;
+
+    for(int i= 0;i<contadorUsuarios;i++){
+        if(ListaUsuarios[i]->getNombre() == name){
+            std::cout<<"Se encontro el Usuario "<<ListaUsuarios[i]->getNombre()<<std::endl;
+        }
+    }
     
 }
 
@@ -413,18 +419,4 @@ void Menu::BorrarUsuario(int id)
             break;
         }
     }
-
-    if (indice == -1) {
-        std::cout << "Usuario con ID " << id << " no encontrado.\n";
-        return;
-    }
-
-    
-    for (int i = indice; i < contadorUsuarios - 1; i++) {
-        ListaUsuarios[i] = ListaUsuarios[i + 1]; 
-    }
-
-    contadorUsuarios--;
-
-    std::cout << "Usuario con ID " << id << " ha sido borrado.\n";
 }
