@@ -397,12 +397,12 @@ void Menu::CrearUsuario()
 void Menu::BuscarUsuario()
 {
     std::string name;
-    std::cout<<"Ingrese nombre del wn: "<<std::endl;
+    std::cout<<"Ingrese nombre del Usuario: "<<std::endl;
     std::cin>>name;
 
     for(int i= 0;i<contadorUsuarios;i++){
-        if(ListaUsuarios[i] == name){
-            std::cout<<"Se encontro el wn "<<std::endl;
+        if(ListaUsuarios[i]->getNombre() == name){
+            std::cout<<"Se encontro el Usuario "<<std::endl;
         }
     }
     
