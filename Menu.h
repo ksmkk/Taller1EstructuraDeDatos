@@ -24,7 +24,7 @@ public:
     void DevolverMaterial();
     void CrearUsuario();
     void BuscarUsuario();
-    void BorrarUsuario();
+    void BorrarUsuario(int id);
 
 
 };

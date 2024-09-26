@@ -389,9 +389,14 @@ void Menu::CrearUsuario()
 
 void Menu::BuscarUsuario()
 {
+    
 }
 
-void Menu::BorrarUsuario()
+void Menu::BorrarUsuario(int id)
 {
-
+    int indice = -1;
+    for (int i = 0; i < numeroUsuarios; ++i) {
+        if (usuarios[i].id == id) {
+            indice = i;
+            break;
 }
