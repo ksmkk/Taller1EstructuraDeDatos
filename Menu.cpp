@@ -396,6 +396,15 @@ void Menu::CrearUsuario()
 
 void Menu::BuscarUsuario()
 {
+    std::string name;
+    std::cout<<"Ingrese nombre del wn: "<<std::endl;
+    std::cin>>name;
+
+    for(int i= 0;i<contadorUsuarios;i++){
+        if(ListaUsuarios[i] == name){
+            std::cout<<"Se encontro el wn "<<std::endl;
+        }
+    }
     
 }
 
@@ -408,19 +417,4 @@ void Menu::BorrarUsuario(int id)
             break;
         }
     }
-
-    if (indice == -1) {
-        std::cout << "Usuario con ID " << id << " no encontrado.\n";
-        return;
-    }
-
-    
-    for (int i = indice; i < contadorUsuarios - 1; i++) {
-        ListaUsuarios[i] = ListaUsuarios[i + 1]; 
-    }
-
-    contadorUsuarios--;
-
-    std::cout << "Usuario con ID " << id << " ha sido borrado.\n";
-}
 }
