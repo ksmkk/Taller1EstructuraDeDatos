@@ -16,6 +16,13 @@ Menu::Menu()
     {
         biblioteca[i] = nullptr;
     }
+
+    contadorUsuarios = 0;
+
+    for (int i = 0; i < 100; i++)
+    {
+        ListaUsuarios[i] = nullptr;
+    }
 }
 
 std::vector<std::string> split(const std::string &str, char delimiter)
@@ -395,8 +402,10 @@ void Menu::BuscarUsuario()
 void Menu::BorrarUsuario(int id)
 {
     int indice = -1;
-    for (int i = 0; i < numeroUsuarios; ++i) {
-        if (usuarios[i].id == id) {
+    for (int i = 0; i < contadorUsuarios; ++i) {
+        if (ListaUsuarios[i]->getId() == id) {
             indice = i;
             break;
+        }
+    }
 }

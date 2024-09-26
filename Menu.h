@@ -10,6 +10,9 @@ class Menu {
 private:
     MaterialBibliografico *biblioteca[100];
     int contadorMateriales;
+
+    Usuario *ListaUsuarios[100];
+    int contadorUsuarios;
     
 public:
     Menu();
