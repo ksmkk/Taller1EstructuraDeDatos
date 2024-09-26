@@ -1,5 +1,4 @@
 # Simulador de Biblioteca Digital
-Descripción
 Este proyecto es un simulador de biblioteca digital que permite realizar las siguientes acciones:
 
 Agregar nuevos libros y revistas.
@@ -8,7 +7,7 @@ Gestionar el préstamo y devolución de materiales.
 Administrar usuarios de la biblioteca.
 El proyecto está desarrollado en C++ y utiliza conceptos de Programación Orientada a Objetos (POO), punteros y asignación dinámica de memoria para gestionar los materiales bibliográficos y los usuarios.
 
-Funcionalidades
+# Funcionalidades
 Agregar Material a la Biblioteca:
 
 Libros y revistas pueden ser añadidos a la biblioteca con atributos específicos como título, autor, ISBN, etc.
