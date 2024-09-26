@@ -423,4 +423,3 @@ void Menu::BorrarUsuario(int id)
 
     std::cout << "Usuario con ID " << id << " ha sido borrado.\n";
 }
-}
