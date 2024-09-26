@@ -188,6 +188,7 @@ void Menu::MostrarMenu()
             break;
         default:
             std::cout << "Opción no válida." << std::endl;
+            std::getline(std::cin,opcion);
             break;
         }
     }
