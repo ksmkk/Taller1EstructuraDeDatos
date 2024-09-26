@@ -35,13 +35,13 @@ Uso de punteros y arrays estáticos para gestionar la memoria.
 Ejecución del Programa
 Para ejecutar el programa, utiliza los siguientes comandos:
 
-bash
-Copiar código
-g++ main.cpp Menu.cpp Libro.cpp Revista.cpp Usuario.cpp MaterialBibliografico.cpp -o simulador_biblioteca
-./simulador_biblioteca
-Ejemplo de Objetos Creados en el main
-cpp
-Copiar código
+
+g++ main.cpp Menu.cpp Libro.cpp Revista.cpp Usuario.cpp MaterialBibliografico.cpp -o biblioteca.exe
+
+./biblioteca.exe
+
+# Ejemplo de Objetos Creados en el main
+
 Menu* menu = new Menu();
 menu->MostrarMenu();
 menu: Objeto de tipo Menu que gestiona las interacciones con el usuario mediante un menú en consola.
