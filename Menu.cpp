@@ -187,8 +187,9 @@ void Menu::MostrarMenu()
             Verdad = false;
             break;
         default:
+            std::string a="";
             std::cout << "Opción no válida." << std::endl;
-            std::getline(std::cin,opcion);
+            std::getline(std::cin, a);
             break;
         }
     }
@@ -438,24 +439,23 @@ void Menu::CrearUsuario()
 
     std::cout<<"Creando Usuario... "<< std::endl;
     std::string nombre;
-    int id;
+    std::string id;
     std::cout << "Ingrese nombre: " << std::endl;
     std::cin >> nombre;
-    std::cin.ignore();
     std::getline(std::cin, nombre);
     
     std::cout << "Ingrese id: " << std::endl;
-    std::cin >> id;
+    std::getline(std::cin, id);
     
-    Usuario* creado = new Usuario(nombre, id);
+    Usuario* creado = new Usuario(nombre, std::stoi(id));
     
     std::ofstream archivo("usuarios.txt" , std::ios::app);
 
     if (!archivo) {
         std::cout << "Error al abrir el archivo." << std::endl;
     }
-
-    archivo << nombre << "/" << id << std::endl;
+    std::string out= nombre+"/"+id+"\n";
+    archivo << out;
 
     archivo.close();
 
