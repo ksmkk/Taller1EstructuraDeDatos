@@ -440,8 +440,12 @@ void Menu::CrearUsuario()
     int id;
     std::cout << "Ingrese nombre: " << std::endl;
     std::cin >> nombre;
+    std::cin.ignore();
+    std::getline(std::cin, nombre);
+    
     std::cout << "Ingrese id: " << std::endl;
     std::cin >> id;
+    
     Usuario* creado = new Usuario(nombre, id);
     
     std::ofstream archivo("usuarios.txt" , std::ios::app);
@@ -450,7 +454,7 @@ void Menu::CrearUsuario()
         std::cout << "Error al abrir el archivo." << std::endl;
     }
 
-    archivo << nombre<<"/"<<id<< std::endl;
+    archivo << nombre << "/" << id << std::endl;
 
     archivo.close();
 
