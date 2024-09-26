@@ -163,6 +163,7 @@ void Menu::MostrarMenu()
         std::cout << "" << std::endl;
         std::cout << "Ingrese su opcion a elegir: " << std::endl;
         std::cin >> opcion;
+        std::cin.ignore();
 
         switch (opcion)
         {
@@ -193,14 +194,16 @@ void Menu::MostrarMenu()
     }
 }
 void Menu::OpcionesMateriales(){
-    int opcionMaterial;
+            int opcionMaterial;
             std::cout << "1.Prestar material" << std::endl;
             std::cout << "2.Devolver material" << std::endl;
             std::cout << "Ingrese su opcion a elegir: " << std::endl;
             std::cin >> opcionMaterial;
+            std::cin.ignore();
+            
             if (opcionMaterial == 1)
             {
-                void PrestarMaterial();
+                PrestarMaterial();
             }
             else if (opcionMaterial == 2)
             {
@@ -219,7 +222,7 @@ void Menu::OpcionesUsuarios(){
             std::cout << "" << std::endl;
             std::cout << "Ingrese su opcion a elegir: " << std::endl;
             std::cin >> opcionUsuario;
-
+            std::cin.ignore();
 
             if (opcionUsuario == 1)
             {
