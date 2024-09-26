@@ -23,7 +23,7 @@ Los usuarios pueden pedir prestado un material (máximo 5 a la vez) y devolverlo
 Gestión de Usuarios:
 
 Los usuarios pueden ser creados, buscados o eliminados del sistema. Cada usuario tiene un registro de los materiales prestados.
-Persistencia de Datos:
+# Persistencia de Datos:
 
 Los datos de la biblioteca y los usuarios se pueden guardar y cargar desde archivos de texto utilizando fstream.
 Estructura del Código
