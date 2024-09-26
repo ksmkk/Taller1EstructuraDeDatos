@@ -200,11 +200,11 @@ void Menu::OpcionesMateriales(){
             std::cin >> opcionMaterial;
             if (opcionMaterial == 1)
             {
-                void PrestarMaterial();
+                PrestarMaterial();
             }
             else if (opcionMaterial == 2)
             {
-                void DevolverMaterial();
+                DevolverMaterial();
             }
             else
             {
@@ -223,16 +223,16 @@ void Menu::OpcionesUsuarios(){
 
             if (opcionUsuario == 1)
             {
-                void CrearUsuario();
+                CrearUsuario();
                 
             }
             else if (opcionUsuario == 2)
             {
-                void BuscarUsuario();
+                BuscarUsuario();
             }
             else
             {
-                void BorrarUsuario();
+                BorrarUsuario();
             }
 
 }
@@ -317,7 +317,7 @@ void Menu::AgregarMaterial()
             std::cout << "Revista creada: " << biblioteca[contadorMateriales]->getNombre() << std::endl;
             contadorMateriales++;
 
-            archivo << categoria<<"/"<<nombreMaterial<<"/"<<autor<<"/"<<isbn<<"/"<<numEdicion<<"/"<<mes<< endl;
+            archivo<< categoria<<"/"<<nombreMaterial<<"/"<<autor<<"/"<<isbn<<"/"<<numEdicion<<"/"<<mes<< std::endl;
             break;
         } else {
             std::cout << "Categoria incorrecta, solo se aceptan libros y revistas." << std::endl;
@@ -389,7 +389,7 @@ void Menu::CrearUsuario()
         std::cout << "Error al abrir el archivo." << std::endl;
     }
 
-    archivo << nombre<<"/"<<id << endl;
+    archivo << nombre<<"/"<<id<< std::endl;
 
     archivo.close();
 
@@ -410,8 +410,12 @@ void Menu::BuscarUsuario()
     
 }
 
-void Menu::BorrarUsuario(int id)
+void Menu::BorrarUsuario()
 {
+    int id;
+    std::cout << "Ingrese ID del Usuario a borrar: " << std::endl;
+    std::cin >> id;
+
     int indice = -1;
     for (int i = 0; i < contadorUsuarios; ++i) {
         if (ListaUsuarios[i]->getId() == id) {
@@ -419,4 +423,48 @@ void Menu::BorrarUsuario(int id)
             break;
         }
     }
+
+    if (indice == -1) {
+        std::cout << "Usuario no encontrado." << std::endl;
+        return;
+    }
+
+    delete ListaUsuarios[indice]; 
+    for (int i = indice; i < contadorUsuarios - 1; ++i) {
+        ListaUsuarios[i] = ListaUsuarios[i + 1]; 
+    }
+    --contadorUsuarios;
+
+   
+    std::ifstream archivoLectura("usuarios.txt");
+    std::ofstream archivoTemporal("usuarios_temp.txt");
+
+    if (!archivoLectura || !archivoTemporal) {
+        std::cout << "Error al abrir el archivo." << std::endl;
+        return;
+    }
+
+    std::string linea;
+    while (std::getline(archivoLectura, linea)) {
+        
+        std::stringstream ss(linea);
+        std::string nombre;
+        int idArchivo;
+        std::getline(ss, nombre, '/');
+        ss >> idArchivo;
+
+        
+        if (idArchivo != id) {
+            archivoTemporal << linea << std::endl;
+        }
+    }
+
+    archivoLectura.close();
+    archivoTemporal.close();
+
+    
+    std::remove("usuarios.txt");
+    std::rename("usuarios_temp.txt", "usuarios.txt");
+
+    std::cout << "Usuario borrado correctamente." << std::endl;
 }
