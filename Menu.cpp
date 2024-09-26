@@ -336,17 +336,78 @@ void Menu::MostrarInfoMaterial()
 
 void Menu::BuscarMaterial()
 {
-    std::string nombre;
-    std::cout << "Ingrese el nombre del material buscado: " << std::endl;
-    std::cin >> nombre;
-    for (int i = 0; i < contadorMateriales; i++)
-    {
-        if (biblioteca[i]->getNombre() == nombre)
+    std::string tituloBuscado, autorBuscado;
+    int opcion;
+
+    std::cout << "Seleccione el criterio de búsqueda:" << std::endl;
+    std::cout << "1. Buscar por título" << std::endl;
+    std::cout << "2. Buscar por autor" << std::endl;
+    std::cout << "3. Buscar por título y autor" << std::endl;
+    std::cout << "Ingrese una opción: "; 
+    std::cin >> opcion;
+    std::cin.ignore();
+
+    bool encontrado = false;
+
+    if (opcion == 1) {
+        std::cout << "Ingrese el título del material: " << std::endl;
+        std::getline(std::cin, tituloBuscado);
+
+        for (int i = 0; i < contadorMateriales; ++i)
         {
-            std::cout << "Se ha encontrado el material" << std::endl;
+            if (biblioteca[i]->getNombre() == tituloBuscado)
+            {
+                std::cout << "Se ha encontrado el material: " << std::endl;
+                std::cout << "Título: " << biblioteca[i]->getNombre() << std::endl;
+                std::cout << "Autor: " << biblioteca[i]->getAutor() << std::endl;
+                encontrado = true;
+                break;
+            }
         }
     }
+    else if (opcion == 2) {
+        std::cout << "Ingrese el autor del material: " << std::endl;
+        std::getline(std::cin, autorBuscado);
+
+        for (int i = 0; i < contadorMateriales; ++i)
+        {
+            if (biblioteca[i]->getAutor() == autorBuscado)
+            {
+                std::cout << "Se ha encontrado el material: " << std::endl;
+                std::cout << "Título: " << biblioteca[i]->getNombre() << std::endl;
+                std::cout << "Autor: " << biblioteca[i]->getAutor() << std::endl;
+                encontrado = true;
+                break;
+            }
+        }
+    }
+    else if (opcion == 3) {
+        std::cout << "Ingrese el título del material: " << std::endl;
+        std::getline(std::cin, tituloBuscado);
+        std::cout << "Ingrese el autor del material: " << std::endl;
+        std::getline(std::cin, autorBuscado);
+
+        for (int i = 0; i < contadorMateriales; ++i)
+        {
+            if (biblioteca[i]->getNombre() == tituloBuscado && biblioteca[i]->getAutor() == autorBuscado)
+            {
+                std::cout << "Se ha encontrado el material: " << std::endl;
+                std::cout << "Título: " << biblioteca[i]->getNombre() << std::endl;
+                std::cout << "Autor: " << biblioteca[i]->getAutor() << std::endl;
+                encontrado = true;
+                break;
+            }
+        }
+    } else {
+        std::cout << "Opción no válida. Intente de nuevo." << std::endl;
+        return;
+    }
+
+    if (!encontrado) {
+        std::cout << "No se ha encontrado un material que coincida con los criterios proporcionados." << std::endl;
+    }
 }
+
 
 void Menu::PrestarMaterial()
 {
