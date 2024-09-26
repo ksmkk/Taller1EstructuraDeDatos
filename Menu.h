@@ -20,6 +20,8 @@ public:
     void AgregarMaterial();
     void MostrarInfoMaterial();
     void LeerUsuariosyMateriales();
+    void OpcionesMateriales();
+    void OpcionesUsuarios();
     bool LeerUsuario(std::string linea);
     bool LeerMateriales(std::string linea);
     void BuscarMaterial();

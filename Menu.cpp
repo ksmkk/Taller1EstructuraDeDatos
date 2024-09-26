@@ -176,16 +176,33 @@ void Menu::MostrarMenu()
             BuscarMaterial();
             break;
         case 4:
-            int opcionMaterial;
+            OpcionesMateriales();
+            break;
+        case 5:
+            OpcionesUsuarios();
+            break;
+
+        case 6:
+            std::cout << "Saliendo del sistema..." << std::endl;
+            Verdad = false;
+            break;
+        default:
+            std::cout << "Opción no válida." << std::endl;
+            break;
+        }
+    }
+}
+void Menu::OpcionesMateriales(){
+    int opcionMaterial;
             std::cout << "1.Prestar material" << std::endl;
             std::cout << "2.Devolver material" << std::endl;
             std::cout << "Ingrese su opcion a elegir: " << std::endl;
             std::cin >> opcionMaterial;
-            if (opcion == 1)
+            if (opcionMaterial == 1)
             {
                 void PrestarMaterial();
             }
-            else if (opcion == 2)
+            else if (opcionMaterial == 2)
             {
                 void DevolverMaterial();
             }
@@ -193,12 +210,9 @@ void Menu::MostrarMenu()
             {
                 std::cout << "Opcion invalida" << std::endl;
             }
-
-            break;
-        case 5:
-
-
-            int opcionUsuario;
+}
+void Menu::OpcionesUsuarios(){
+    int opcionUsuario;
             std::cout << "1. Crear Usuario" << std::endl;
             std::cout << "2. Buscar Usuario" << std::endl;
             std::cout << "3. Borrar Usuario" << std::endl;
@@ -221,19 +235,7 @@ void Menu::MostrarMenu()
                 void BorrarUsuario();
             }
 
-            break;
-
-        case 6:
-            std::cout << "Saliendo del sistema..." << std::endl;
-            Verdad = false;
-            break;
-        default:
-            std::cout << "Opción no válida." << std::endl;
-            break;
-        }
-    }
 }
-
 void Menu::AgregarMaterial()
 {
     bool EsVerdadero = true;
@@ -402,7 +404,7 @@ void Menu::BuscarUsuario()
 
     for(int i= 0;i<contadorUsuarios;i++){
         if(ListaUsuarios[i]->getNombre() == name){
-            std::cout<<"Se encontro el Usuario "<<std::endl;
+            std::cout<<"Se encontro el Usuario "<<ListaUsuarios[i]->getNombre()<<std::endl;
         }
     }
     
