@@ -63,3 +63,7 @@ void Usuario::MostrarPrestados() {
         }
     }
 }
+
+Usuario::~Usuario() {
+    std::cout << "Se destruyo el usuario: " << nombre<< std::endl;
+}

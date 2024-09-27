@@ -24,6 +24,7 @@ class Usuario {
     void PrestarMaterial(MaterialBibliografico* material);  
     void DevolverMaterial(int posicion); 
     void MostrarPrestados();
+    ~Usuario();
 };
 
 #endif //USUARIO_H

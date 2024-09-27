@@ -40,8 +40,7 @@ Uso de punteros y arrays estáticos para gestionar la memoria.
 Ejecución del Programa
 Para ejecutar el programa, utiliza los siguientes comandos:
 
-
-g++ main.cpp Menu.cpp Libro.cpp Revista.cpp Usuario.cpp MaterialBibliografico.cpp -o biblioteca.exe
+g++ -o biblioteca MaterialBibliografico.cpp Libro.cpp Revista.cpp Usuario.cpp Menu.cpp main.cpp
 
 ./biblioteca.exe
 

@@ -17,4 +17,5 @@ private:
 
     virtual ~Revista();
 };
+
 #endif //REVISTA_H

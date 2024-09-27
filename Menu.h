@@ -31,7 +31,7 @@ public:
     void CrearUsuario();
     void BuscarUsuario();
     void BorrarUsuario();
-
+    ~Menu();
 
 };
 
