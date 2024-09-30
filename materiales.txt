@@ -2,3 +2,4 @@ Libro/C++ Programming/Bjarne Stroustrup/97803/2023/Introduccion a la programacio
 Revista/Science Magazine/John Doe/12345/5/Septiembre
 Revista/Hola/Yomismo/1001/4/17-02-2021
 Libro/Python Specialist/Bastian/0012/2024/Es un buen libro de educacion.
+Libro/El principito/Edagar Allan Poe/2015/17-03-1995/El principito trata de un prin que es cipito

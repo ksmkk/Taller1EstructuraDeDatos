@@ -119,7 +119,7 @@ bool Menu::LeerUsuario(std::string linea)
     if (partes.size() >= 2)
     {
         std::string nombre = partes[0];
-        int id = std::stoi(partes[1]);
+        int id = std::stoi(partes[1]); // ESTO SE PUEDE CAMBIAR PERO NO SE, QUE MIEDO.
 
         Usuario *nuevoUsuario = new Usuario(nombre, id);
 
@@ -491,7 +491,7 @@ void Menu::PrestarMaterial()
     std::cout << "Ingrese su ID para prestar material: ";
     std::getline(std::cin, idUsuario);
 
-    Usuario* usuario = nullptr;
+    Usuario *usuario = nullptr;
 
     for (int i = 0; i < contadorUsuarios; ++i)
     {
@@ -512,7 +512,7 @@ void Menu::PrestarMaterial()
     std::cout << "Ingrese el nombre del material a prestar: ";
     std::getline(std::cin, nombreMaterial);
 
-    MaterialBibliografico* materialSeleccionado = nullptr;
+    MaterialBibliografico *materialSeleccionado = nullptr;
 
     for (int i = 0; i < contadorMateriales; ++i)
     {
@@ -533,14 +533,13 @@ void Menu::PrestarMaterial()
     std::cout << "Material prestado exitosamente: " << materialSeleccionado->getNombre() << std::endl;
 }
 
-
 void Menu::DevolverMaterial()
 {
     std::string idUsuario;
     std::cout << "Ingrese su ID para devolver material: ";
     std::getline(std::cin, idUsuario);
 
-    Usuario* usuario = nullptr;
+    Usuario *usuario = nullptr;
 
     for (int i = 0; i < contadorUsuarios; ++i)
     {
@@ -579,19 +578,16 @@ void Menu::DevolverMaterial()
     }
 }
 
-
-
 void Menu::CrearUsuario()
 {
-    std::string nombre ="";
+    std::string nombre = "";
     std::string id = "";
 
     std::cout << "Ingrese nombre del nuevo usuario: ";
     std::getline(std::cin, nombre);
 
     std::cout << "Ingrese ID del nuevo usuario: ";
-    std::cin >> id;
-    cin.ignore();
+    std::getline(std::cin, id);
 
     if (contadorUsuarios < 100)
     {
@@ -604,12 +600,13 @@ void Menu::CrearUsuario()
         if (archivoUsuarios)
         {
             archivoUsuarios << nombre << "/" << id << "\n";
+            archivoUsuarios.flush();
             archivoUsuarios.close();
         }
     }
     else
     {
-        std::cout << "No se pueden agregar mas usuarios." << std::endl;
+        std::cout << "No se pueden agregar más usuarios." << std::endl;
     }
 }
 
